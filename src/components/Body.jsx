@@ -10,7 +10,6 @@ class Body extends React.Component {
     this.state = {
       inputPassword: "Password",
       inputEmail: "",
-      user: null,
     };
   }
 
@@ -18,12 +17,18 @@ class Body extends React.Component {
     const user = checkUser(this.state.inputPassword, this.state.inputEmail);
 
     if (user) {
-      this.setState({
-        user: user,
-      });
+      localStorage.setItem("user", JSON.stringify(user));
+      // Refresh halaman agar halaman login ditampilkan setelah logout
+      window.location.reload();
     } else {
       alert("Email atau Password Salah!");
     }
+  };
+
+  handleLogout = () => {
+    localStorage.removeItem("user"); // Hapus user dari localStorage
+    // Refresh halaman agar halaman login ditampilkan setelah logout
+    window.location.reload();
   };
 
   handleInputChange = (event) => {
@@ -31,7 +36,6 @@ class Body extends React.Component {
     this.setState({
       [name]: value,
     });
-    console.log(name);
   };
 
   buildNotLoggedInPage() {
@@ -55,13 +59,14 @@ class Body extends React.Component {
   }
 
   render() {
+    const storedUser = localStorage.getItem("user");
+    const user = JSON.parse(storedUser);
+
     return (
       <>
-        <Header user={this.state.user} />
+        <Header user={user} onClick={this.handleLogout} />
         <p></p>
-        {this.state.user
-          ? this.buildLoggedInPage()
-          : this.buildNotLoggedInPage()}
+        {user ? this.buildLoggedInPage() : this.buildNotLoggedInPage()}
       </>
     );
   }
