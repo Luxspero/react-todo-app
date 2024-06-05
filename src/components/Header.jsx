@@ -4,7 +4,7 @@ const Header = ({ user, onClick }) => {
   return (
     <div className="navbar bg-neutral text-white">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">Welcome, {user.name}</a>
+        <a className="btn btn-ghost text-xl">Todo List App</a>
       </div>
       {user && (
         <div className="flex-none">

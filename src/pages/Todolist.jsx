@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Addtodoform from "../components/Addtododform";
+import Input from "../components/Input";
 
 const Todolist = () => {
   const [tasks, setTasks] = useState([
@@ -36,29 +38,19 @@ const Todolist = () => {
       <div className="card w-auto bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="card-title">To-Do List</h2>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Add new task</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Type here"
-              className="input input-bordered mb-4"
-              value={newTask}
-              onChange={(e) => setNewTask(e.target.value)}
-            />
-            <button className="btn btn-primary mb-4" onClick={addTask}>
-              Add Task
-            </button>
-          </div>
-          <ul className="list-disc pl-5">
+          <Addtodoform
+            onChange={setNewTask}
+            addTask={addTask}
+            newTask={newTask}
+          />
+          <ul className=" pl-5">
             {tasks.map((task) => (
               <li
                 key={task.id}
                 className={`mb-2  ${task.completed ? "line-through" : ""}`}
               >
                 <div className="flex items-center">
-                  <input
+                  <Input
                     type="checkbox"
                     className="checkbox mr-2"
                     checked={task.completed}
