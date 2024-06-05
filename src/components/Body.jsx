@@ -8,7 +8,7 @@ class Body extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputPassword: "Password",
+      inputPassword: "",
       inputEmail: "",
     };
   }

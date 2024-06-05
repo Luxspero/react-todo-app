@@ -14,6 +14,7 @@ const Login = ({ inputEmail, inputPassword, onInputChange, onLogin }) => {
           >
             Email
             <Input
+              placeholder="demo@gmail.com"
               className="grow"
               type="email"
               name="inputEmail"
@@ -28,6 +29,7 @@ const Login = ({ inputEmail, inputPassword, onInputChange, onLogin }) => {
           >
             Password
             <Input
+              placeholder="demo"
               className="grow"
               type="password"
               name="inputPassword"
